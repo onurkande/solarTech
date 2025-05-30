@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarTech - Start Saving with Solar Energy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1295d9;
+            --secondary-color: #27f7c6;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --dark-bg: #1e293b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Inter", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* FIXED: Enhanced Navbar with proper z-index and mobile fixes */
+        .custom-navbar {
+            background: rgba(255, 255, 255, 0.97) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(18, 149, 217, 0.07);
+            border-bottom: 1.5px solid #e2e8f0;
+            z-index: 9999 !important; /* FIXED: Higher z-index */
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-logo {
+            height: 38px;
+            width: auto;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        
+        .navbar-brand-text {
+            font-weight: 800;
+            font-size: 1.45rem;
+            color: #1295d9 !important;
+            letter-spacing: 0.5px;
+        }
+        
+        /* FIXED: Improved navbar toggler for mobile */
+        .navbar-toggler {
+            border: 2px solid #1295d9 !important;
+            border-radius: 8px !important;
+            padding: 8px 12px !important;
+            background: rgba(18, 149, 217, 0.1) !important;
+            z-index: 10000 !important;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(18, 149, 217, 0.25) !important;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%231295d9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+            width: 20px !important;
+            height: 20px !important;
+        }
+        
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: #1e293b !important;
+            margin: 0 4px;
+            font-size: 1.08rem;
+            transition: color 0.3s, background 0.3s;
+            border-radius: 8px;
+            padding: 8px 18px !important;
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #27f7c6 !important;
+            background: #f0f9ff;
+        }
+        
+        .btn-navbar-cta {
+            background: linear-gradient(90deg, #1295d9 60%, #27f7c6 100%);
+            color: #fff !important;
+            font-weight: 700;
+            font-size: 1.08rem;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 32px;
+            box-shadow: 0 4px 18px rgba(18, 149, 217, 0.1);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-navbar-cta:hover {
+            background: #1295d9;
+            color: #fff !important;
+            transform: translateY(-2px) scale(1.04);
+        }
+        
+        /* FIXED: Mobile navbar improvements */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98) !important;
+            border-radius: 15px !important;
+            margin-top: 15px !important;
+            padding: 20px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid #e2e8f0 !important;
+            }
+        
+            .btn-navbar-cta {
+            width: 100%;
+            text-align: center;
+            margin-top: 16px;
+            }
+        
+            .navbar-nav .nav-link {
+            margin: 0 0 8px 0;
+            text-align: center;
+            }
+        }
+        
+        /* Hero Slider - Enhanced mobile responsiveness */
+        .hero-slider {
+            position: relative;
+            height: 90vh;
+            min-height: 500px; /* FIXED: Minimum height for mobile */
+            overflow: hidden;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-slide:nth-child(1) {
+            background-image: linear-gradient(rgba(37, 99, 235, 0.7), rgba(16, 185, 129, 0.7)),
+            url("https://cdn.b12.io/client_media/ePiJXRZ1/41a564a0-148b-11f0-a1ec-0242ac110002-jpeg-hero_image.jpeg");
+        }
+        
+        .hero-slide:nth-child(2) {
+            background-image: linear-gradient(rgba(16, 185, 129, 0.7), rgba(245, 158, 11, 0.7)),
+            url("https://cdn.b12.io/client_media/ePiJXRZ1/5f95ead8-148c-11f0-979e-0242ac110002-jpeg-hero_image.jpeg");
+        }
+        
+        .hero-slide:nth-child(3) {
+            background-image: linear-gradient(rgba(245, 158, 11, 0.7), rgba(37, 99, 235, 0.7)),
+            url("https://cdn.b12.io/client_media/ePiJXRZ1/623de394-148c-11f0-979e-0242ac110002-jpeg-hero_image.jpeg");
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+            width: 90%;
+            max-width: 800px;
+            padding: 0 20px; /* FIXED: Added padding for mobile */
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+        
+        .btn-hero {
+            background: var(--accent-color);
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            animation: slideInUp 1s ease-out 0.4s both;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-hero:hover {
+            background: #d97706;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
+            color: white;
+        }
+        
+        /* Slider Navigation */
+        .slider-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 3;
+        }
+        
+        .slider-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Enhanced Advantages Section */
+        .advantages-section {
+            background: var(--bg-light);
+        }
+        
+        .advantage-card {
+            background: #fff;
+            padding: 56px 35px 40px 35px;
+            border-radius: 28px;
+            box-shadow: 0 10px 40px rgba(18, 149, 217, 0.13);
+            transition: all 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+            height: 100%;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px; /* FIXED: Added margin for mobile */
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-18px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(18, 149, 217, 0.18);
+        }
+        
+        .advantage-svg-icon {
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px auto;
+            background: linear-gradient(135deg, #e0f7fa 60%, #b2fefa 100%);
+            border-radius: 50%;
+            box-shadow: 0 4px 18px rgba(18, 149, 217, 0.1);
+        }
+        
+        .advantage-svg-icon img {
+            width: 54px;
+            height: 54px;
+            display: block;
+        }
+        
+        .advantage-card h4 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            text-align: center;
+            color: #1295d9;
+            letter-spacing: 0.2px;
+        }
+        
+        .advantage-card p {
+            color: #1e293b;
+            text-align: center;
+            line-height: 1.7;
+            font-size: 1.08rem;
+            font-weight: 500;
+        }
+        
+        .advantage-card p strong {
+            color: #27f7c6;
+            font-weight: 700;
+        }
+        
+        /* Enhanced About Section */
+        .about-section {
+            background: white;
+        }
+        
+        .about-text h3 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+        
+        .about-summary {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+        
+        .about-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 40px;
+        }
+        
+        .about-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .about-features i {
+            color: var(--secondary-color);
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .about-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .about-gallery img {
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 100%; /* FIXED: Ensure images are responsive */
+            height: auto;
+        }
+        
+        .about-gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        .about-gallery .main-image {
+            grid-column: 1 / -1;
+        }
+        
+        /* Enhanced Video Section */
+        .video-section {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #334155 100%);
+            color: white;
+        }
+        
+        .video-section .section-title h2,
+        .video-section .section-title p {
+            color: white;
+        }
+        
+        .video-container {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px; /* FIXED: Added margin for mobile */
+        }
+        
+        .video-container iframe {
+            border-radius: 25px;
+            width: 100%;
+            height: 400px;
+        }
+        
+        .video-info h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+        }
+        
+        .video-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+        
+        .video-highlights {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .video-highlights li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .video-highlights i {
+            color: var(--secondary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Enhanced Process Section */
+        .process-section {
+            background: #f1f5f9;
+            position: relative;
+        }
+        
+        .process-details-btn {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .process-details-btn:hover {
+            background: #1ee6b8;
+            transform: translateY(-2px);
+        }
+        
+        .process-step {
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            position: relative;
+            padding: 44px 28px 36px 28px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 8px 32px rgba(18, 149, 217, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1.5px solid #e2e8f0;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(18, 149, 217, 0.16);
+        }
+        
+        .process-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #e0f7fa 60%, #b2fefa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px auto;
+            font-size: 2.2rem;
+            color: #1295d9;
+            box-shadow: 0 4px 18px rgba(18, 149, 217, 0.1);
+        }
+        
+        .process-step h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+        
+        .process-step p {
+            color: #334155;
+            line-height: 1.7;
+            font-size: 1.07rem;
+            font-weight: 500;
+        }
+        
+        .process-step p strong {
+            color: #27f7c6;
+            font-weight: 700;
+        }
+        
+        .process-gallery-thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            justify-content: center;
+        }
+        
+        .process-gallery-thumb {
+            width: 54px;
+            height: 54px;
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid #e2e8f0;
+            transition: border 0.2s, transform 0.2s;
+        }
+        
+        .process-gallery-thumb:hover {
+            border: 2px solid var(--primary-color);
+            transform: scale(1.08);
+        }
+        
+        /* Enhanced Contact Section */
+        .contact-section {
+            background: var(--bg-light);
+        }
+        
+        .contact-form {
+            background: #f8fafc;
+            padding: 48px 38px;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(18, 149, 217, 0.1);
+            border: 1.5px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .contact-form form {
+            width: 100%;
+        }
+        
+        .contact-form .form-control,
+        .contact-form select,
+        .contact-form textarea {
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 16px 22px;
+            font-size: 1.08rem;
+            background: #fff;
+            color: #1e293b;
+            margin-bottom: 18px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-shadow: none;
+        }
+        
+        .contact-form .form-control:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            border-color: #1295d9;
+            box-shadow: 0 0 0 2px rgba(18, 149, 217, 0.1);
+            background: #f0f9ff;
+        }
+        
+        .contact-form .form-control::placeholder,
+        .contact-form textarea::placeholder {
+            color: #b6c2d1;
+            font-size: 1.05rem;
+        }
+        
+        .contact-form select {
+            color: #334155;
+        }
+        
+        .contact-form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+        
+        .contact-form .btn-hero {
+            background: linear-gradient(90deg, #1295d9 60%, #27f7c6 100%);
+            color: #fff;
+            border: none;
+            padding: 18px 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(18, 149, 217, 0.1);
+            margin-top: 10px;
+        }
+        
+        .contact-form .btn-hero:hover {
+            background: #1295d9;
+            color: #fff;
+            transform: translateY(-2px) scale(1.03);
+        }
+        
+        .contact-map {
+            background: linear-gradient(135deg, var(--primary-color) 50%, white 50%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(18, 149, 217, 0.1);
+            border: 1.5px solid #e2e8f0;
+        }
+        
+        .contact-info-cards-row {
+            margin-top: 40px;
+            gap: 24px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 24px 28px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            min-width: 220px;
+            flex: 1 1 220px;
+            margin-bottom: 20px; /* FIXED: Added margin for mobile */
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .contact-card i {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            font-size: 1.3rem;
+        }
+        
+        .contact-card h5 {
+            margin: 0 0 6px 0;
+            font-weight: 700;
+            color: #1295d9;
+            font-size: 1.1rem;
+        }
+        
+        .contact-card p {
+            color: #334155;
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap; /* FIXED: Allow wrapping on mobile */
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px) scale(1.1);
+            color: var(--text-dark);
+        }
+        
+        /* FIXED: Enhanced WhatsApp Button with proper z-index */
+        .whatsapp-btn {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            background: #25d366;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+            padding: 0 28px;
+            min-width: 0;
+            height: 56px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            color: #fff;
+            font-size: 1.15rem;
+            text-decoration: none;
+            z-index: 9998 !important;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-btn i {
+            font-size: 2rem;
+            margin-right: 14px;
+            margin-left: 2px;
+        }
+        
+        .whatsapp-btn-text {
+            font-weight: 600;
+            font-size: 1.13rem;
+            color: #fff;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128c7e;
+            transform: scale(1.08);
+            color: #fff;
+        }
+        
+        .whatsapp-btn::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: rgba(37, 211, 102, 0.3);
+            border-radius: 40px;
+            animation: ripple 2s infinite;
+            z-index: -1;
+        }
+        
+        /* Enhanced Footer */
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 100px 0 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        
+        .footer-section p,
+        .footer-section li {
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #475569;
+            border-radius: 12px;
+            background: #334155;
+            color: white;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: #94a3b8;
+        }
+        
+        .newsletter-form button {
+            background: var(--secondary-color);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: #1ee6b8;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #475569;
+            padding-top: 40px;
+            text-align: center;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* FIXED: Allow wrapping on mobile */
+        }
+        
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: #475569;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+            opacity: 0;
+            transform: translateY(50px);
+            }
+            to {
+            opacity: 1;
+            transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+            box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+            transform: scale(1);
+            opacity: 1;
+            }
+            100% {
+            transform: scale(1.5);
+            opacity: 0;
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* FIXED: Enhanced Mobile Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+            font-size: 3.5rem;
+            }
+        
+            .section-title h2 {
+            font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .advantage-card {
+            padding: 36px 20px 28px 20px;
+            }
+        
+            .advantage-svg-icon {
+            width: 70px;
+            height: 70px;
+            }
+        
+            .advantage-svg-icon img {
+            width: 38px;
+            height: 38px;
+            }
+        
+            .process-step {
+            min-height: 420px;
+            }
+        
+            .process-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            }
+        
+            .contact-form {
+            padding: 28px 20px;
+            }
+        
+            .contact-info-cards-row {
+            flex-direction: column !important;
+            gap: 18px;
+            }
+        
+            .contact-card {
+            min-width: 0;
+            width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-slider {
+            height: 70vh;
+            min-height: 500px;
+            }
+        
+            .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            }
+        
+            .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            }
+        
+            .btn-hero {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            }
+        
+            .section {
+            padding: 60px 0;
+            }
+        
+            .section-title h2 {
+            font-size: 2.2rem;
+            }
+        
+            .section-title p {
+            font-size: 1.1rem;
+            }
+        
+            .advantage-card {
+            padding: 25px 15px 20px 15px;
+            }
+        
+            .advantage-svg-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 16px;
+            }
+        
+            .advantage-svg-icon img {
+            width: 32px;
+            height: 32px;
+            }
+        
+            .advantage-card h4 {
+            font-size: 1.2rem;
+            }
+        
+            .about-gallery {
+            grid-template-columns: 1fr;
+            gap: 15px;
+            }
+        
+            .about-text h3 {
+            font-size: 2.2rem;
+            }
+        
+            .video-container iframe {
+            height: 250px;
+            }
+        
+            .video-info h3 {
+            font-size: 2rem;
+            }
+        
+            .process-section {
+            padding: 50px 0 30px 0;
+            }
+        
+            .process-step {
+            min-height: 360px;
+            }
+        
+            .process-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            }
+        
+            .process-step h4 {
+            font-size: 1.1rem;
+            }
+        
+            .contact-section .row.align-items-stretch {
+            flex-direction: column;
+            }
+        
+            .contact-form,
+            .contact-map {
+            margin-bottom: 25px;
+            }
+        
+            .contact-form {
+            padding: 25px 15px;
+            }
+        
+            .contact-info-cards-row {
+            margin-top: 30px;
+            }
+        
+            .whatsapp-btn {
+            height: 48px;
+            padding: 0 14px;
+            right: 16px;
+            bottom: 16px;
+            border-radius: 24px;
+            }
+        
+            .whatsapp-btn i {
+            font-size: 1.3rem;
+            margin-right: 8px;
+            }
+        
+            .whatsapp-btn-text {
+            font-size: 0.98rem;
+            }
+        
+            .footer {
+            padding: 60px 0 30px;
+            }
+        
+            .footer-content {
+            gap: 30px;
+            margin-bottom: 30px;
+            }
+        
+            .newsletter-form {
+            flex-direction: column;
+            gap: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+            font-size: 2.2rem;
+            }
+        
+            .hero p {
+            font-size: 1.1rem;
+            }
+        
+            .section-title h2 {
+            font-size: 1.8rem;
+            }
+        
+            .advantage-card h4 {
+            font-size: 1.1rem;
+            }
+        
+            .about-text h3 {
+            font-size: 1.8rem;
+            }
+        
+            .video-info h3 {
+            font-size: 1.6rem;
+            }
+        
+            .contact-card {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 15px;
+            }
+        
+            .contact-card i {
+            margin-right: 0;
+            margin-bottom: 10px;
+            }
+        }
+        
+        /* FIXED: Ensure proper stacking order */
+        .navbar {
+            z-index: 9999 !important;
+        }
+        
+        .whatsapp-btn {
+            z-index: 9998 !important;
+        }
+        
+        .hero-slider {
+            z-index: 1;
+        }
+        
+        /* FIXED: Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+        }
+        
+        .container-fluid {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        /* FIXED: Ensure all images are responsive */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* FIXED: Better button touch targets on mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .btn-hero,
+            .btn-navbar-cta {
+            min-height: 44px;
+            padding: 12px 24px;
+            }
+        
+            .slider-dot {
+            width: 20px;
+            height: 20px;
+            }
+        
+            .review-nav-btn {
+            width: 50px;
+            height: 50px;
+            }
+        }
+        
+        /* Process Gallery Image Style */
+        .process-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(18, 149, 217, 0.13);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+        }
+        .process-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+            transition: transform 0.3s;
+        }
+        .process-image img:hover {
+            transform: scale(1.05);
+        }
+        @media (max-width: 991px) {
+            .process-image {
+            height: 160px;
+            margin-bottom: 18px;
+            }
+        }
+        @media (max-width: 768px) {
+            .process-image {
+            height: 120px;
+            margin-bottom: 14px;
+            }
+        }
+        
+        /* Modal Styles */
+        .process-modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30,41,59,0.85);
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        .process-modal.active {
+            display: flex;
+        }
+        .process-modal-content {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(18,149,217,0.18);
+            padding: 0;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .process-modal-img {
+            max-width: 80vw;
+            max-height: 70vh;
+            border-radius: 18px 18px 0 0;
+            display: block;
+        }
+        .process-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 2rem;
+            color: #1295d9;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            transition: color 0.2s;
+        }
+        .process-modal-close:hover {
+            color: #f59e0b;
+        }
+        
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+            min-width: 70px;
+            height: 70px;
+        }
+        
+        .whatsapp-btn-text {
+            margin-left: 12px;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #fff;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-btn {
+                min-width: 60px;
+                height: 60px;
+                padding: 0 16px;
+            }
+            .whatsapp-btn-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <img src="https://www.isosenerji.com/wp-content/uploads/logo-isos-r2.svg#1353" alt="SolarTech Logo" class="navbar-logo me-2" style="height:38px; width:auto;">
+                <span class="navbar-brand-text">SolarTech</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#packages">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="btn-navbar-cta ms-lg-4 mt-3 mt-lg-0">Teklif Al</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider Section -->
+    <section id="home" class="hero-slider">
+        <div class="hero-slide active">
+            <div class="hero-content">
+                <h1>Start Saving with Solar Energy</h1>
+                <p>Make an inspection appointment now to lower your electricity bills and contribute to a sustainable future.</p>
+                <a href="#contact" class="btn-hero">
+                    <i class="fas fa-calendar-check me-2"></i>Request a Free Survey
+                </a>
+            </div>
+        </div>
+        
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h1>Professional Solar Installation</h1>
+                <p>Our certified technicians ensure perfect installation with 25-year warranty and ongoing support.</p>
+                <a href="#contact" class="btn-hero">
+                    <i class="fas fa-tools me-2"></i>Learn About Installation
+                </a>
+            </div>
+        </div>
+        
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h1>Government Incentives Available</h1>
+                <p>Take advantage of federal tax credits and local rebates to maximize your solar investment savings.</p>
+                <a href="#contact" class="btn-hero">
+                    <i class="fas fa-gift me-2"></i>Check Incentives
+                </a>
+            </div>
+        </div>
+        
+        <!-- Slider Navigation -->
+        <!--<div class="slider-arrows">
+            <div class="slider-arrow prev" onclick="prevSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="slider-arrow next" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>-->
+        
+        <div class="slider-nav">
+            <div class="slider-dot active" onclick="currentSlide(1)"></div>
+            <div class="slider-dot" onclick="currentSlide(2)"></div>
+            <div class="slider-dot" onclick="currentSlide(3)"></div>
+        </div>
+    </section>
+
+
+
+    <!-- Enhanced Why Solar Energy Section -->
+    <section id="advantages" class="section advantages-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Why Choose Solar Energy?</h2>
+                <p>Discover the benefits of switching to clean, renewable solar energy for your home or business</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-svg-icon">
+                            <img src="https://www.isosenerji.com/wp-content/uploads/home-kazanc-icon.svg" alt="Bill Savings" />
+                        </div>
+                        <h4>Bill Savings</h4>
+                        <p>Reduce your electricity bills by up to <strong>90%</strong> with our efficient solar energy systems and smart monitoring technology.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-svg-icon">
+                            <img src="https://www.isosenerji.com/wp-content/uploads/home-guvenilir-icon.svg" alt="Environmentally Friendly" />
+                        </div>
+                        <h4>Environmentally Friendly</h4>
+                        <p>Contribute to a <strong>cleaner planet</strong> by reducing your carbon footprint with renewable energy solutions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-svg-icon">
+                            <img src="https://www.isosenerji.com/wp-content/uploads/home-gelir-icon.svg" alt="Government Incentives" />
+                        </div>
+                        <h4>Government Incentives</h4>
+                        <p>Take advantage of <strong>federal tax credits</strong> and local rebates available for solar energy installations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-svg-icon">
+                            <img src="https://www.isosenerji.com/wp-content/uploads/home-gelecek-icon.svg" alt="Energy Independence" />
+                        </div>
+                        <h4>Energy Independence</h4>
+                        <p>Generate your own <strong>clean energy</strong> and reduce dependence on traditional power grid systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced About Us Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="row about-content">
+                <div class="col-lg-6 fade-in d-flex flex-column justify-content-center">
+                    <h3>About SolarTech</h3>
+                    <p class="about-summary">With over <strong>15 years of experience</strong> in the renewable energy industry, we specialize in designing and installing turnkey solar energy systems for homes, businesses, and industrial facilities.</p>
+                    <ul class="about-features">
+                        <li><i class="fas fa-check-circle"></i> <strong>Certified Professional Team</strong></li>
+                        <li><i class="fas fa-award"></i> <strong>25-Year Warranty Coverage</strong></li>
+                        <li><i class="fas fa-tools"></i> <strong>Complete Installation Service</strong></li>
+                        <li><i class="fas fa-headset"></i> <strong>24/7 Customer Support</strong></li>
+                        <li><i class="fas fa-chart-line"></i> <strong>Smart Monitoring Systems</strong></li>
+                        <li><i class="fas fa-shield-alt"></i> <strong>Comprehensive Insurance</strong></li>
+                    </ul>
+                    <p>We have successfully completed over <strong>2,500 installations</strong> and helped our customers save <strong>millions in electricity costs</strong> while reducing their environmental impact.</p>
+                </div>
+                <div class="col-lg-6 fade-in d-flex align-items-center">
+                    <div class="about-gallery w-100">
+                        <img src="https://cdn.b12.io/client_media/ePiJXRZ1/41a564a0-148b-11f0-a1ec-0242ac110002-jpeg-hero_image.jpeg" 
+                             alt="Our professional team" class="img-fluid main-image">
+                        <img src="https://cdn.b12.io/client_media/ePiJXRZ1/0b7e1bb0-148b-11f0-bf01-0242ac110002-jpeg-hero_image.jpeg" 
+                             alt="Happy customers" class="img-fluid">
+                        <img src="https://cdn.b12.io/client_media/ePiJXRZ1/623de394-148c-11f0-979e-0242ac110002-jpeg-hero_image.jpeg" 
+                             alt="Monitoring system" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Video Section -->
+    <section class="section video-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Meet Solar Energy</h2>
+                <p>Watch how our expert team transforms your property with clean solar energy</p>
+            </div>
+            <div class="row video-wrapper">
+                <div class="col-lg-7 fade-in d-flex align-items-center">
+                    <div class="video-container w-100">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        src="https://www.youtube.com/embed/sUvaYycoWqI" 
+                        title="How solar energy got so cheap, and why it's not everywhere (yet)" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                </div>
+                <div class="col-lg-5 fade-in d-flex flex-column justify-content-center">
+                    <div class="video-info">
+                    <h3>Why Should You Watch?</h3>
+                    <p class="video-description">Discover the complete solar installation process and see how we transform homes and businesses with <strong>clean, renewable energy solutions</strong>.</p>
+                    <ul class="video-highlights">
+                        <li><i class="fas fa-play-circle"></i> Complete installation process walkthrough</li>
+                        <li><i class="fas fa-users"></i> Meet our certified professional team</li>
+                        <li><i class="fas fa-chart-bar"></i> Real customer savings and testimonials</li>
+                        <li><i class="fas fa-tools"></i> Advanced technology demonstrations</li>
+                        <li><i class="fas fa-leaf"></i> Environmental impact insights</li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced How It Works Section -->
+    <section id="process" class="section process-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>How Does It Work?</h2>
+                <p>Our simple 3-step process makes going solar easy and hassle-free</p>
+            </div>
+            <div class="row process-gallery">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="process-step fade-in">
+                        <div class="process-image">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/41a564a0-148b-11f0-a1ec-0242ac110002-jpeg-hero_image.jpeg" alt="Free Discovery" class="img-fluid process-main-img">
+                        </div>
+                        <div class="process-gallery-thumbs">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/41a564a0-148b-11f0-a1ec-0242ac110002-jpeg-hero_image.jpeg" class="process-gallery-thumb" alt="Free Discovery 1">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/0b7e1bb0-148b-11f0-bf01-0242ac110002-jpeg-hero_image.jpeg" class="process-gallery-thumb" alt="Free Discovery 2">
+                        </div>
+                        <h4>Free Discovery</h4>
+                        <p>We assess your energy needs and evaluate your property for solar potential with <strong>advanced tools and satellite analysis</strong></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="process-step fade-in">
+                        <div class="process-image">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/0b7e1bb0-148b-11f0-bf01-0242ac110002-jpeg-hero_image.jpeg" alt="System Design" class="img-fluid process-main-img">
+                        </div>
+                        <div class="process-gallery-thumbs">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/0b7e1bb0-148b-11f0-bf01-0242ac110002-jpeg-hero_image.jpeg" class="process-gallery-thumb" alt="System Design 1">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/623de394-148c-11f0-979e-0242ac110002-jpeg-hero_image.jpeg" class="process-gallery-thumb" alt="System Design 2">
+                        </div>
+                        <h4>System Design</h4>
+                        <p>Our engineers create a <strong>custom solar solution</strong> tailored to your specific requirements and budget constraints</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="process-step fade-in">
+                        <div class="process-image">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/623de394-148c-11f0-979e-0242ac110002-jpeg-hero_image.jpeg" alt="Installation & Support" class="img-fluid process-main-img">
+                        </div>
+                        <div class="process-gallery-thumbs">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/623de394-148c-11f0-979e-0242ac110002-jpeg-hero_image.jpeg" class="process-gallery-thumb" alt="Installation & Support 1">
+                            <img src="https://cdn.b12.io/client_media/ePiJXRZ1/41a564a0-148b-11f0-a1ec-0242ac110002-jpeg-hero_image.jpeg" class="process-gallery-thumb" alt="Installation & Support 2">
+                        </div>
+                        <h4>Installation & Support</h4>
+                        <p><strong>Professional installation</strong> and ongoing maintenance to ensure optimal performance for decades to come</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="process-details-btn fade-in">
+                    <i class="fas fa-info-circle me-2"></i>See Details
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Process Modal -->
+    <div class="process-modal" id="processModal">
+        <div class="process-modal-content">
+            <button class="process-modal-close" id="processModalClose" aria-label="Close">&times;</button>
+            <img src="" alt="Gallery Large" class="process-modal-img" id="processModalImg">
+            </div>
+                    </div>
+
+    <!-- Enhanced Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Get Your Free Solar Consultation</h2>
+                <p>Ready to start saving? Contact us today for a personalized solar solution</p>
+            </div>
+            <div class="row align-items-stretch mb-4">
+                <div class="col-lg-6 d-flex flex-column justify-content-stretch">
+                    <div class="contact-form fade-in h-100">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-control" required>
+                                        <option value="">Select Package</option>
+                                        <option value="residential">Residential</option>
+                                        <option value="commercial">Commercial</option>
+                                        <option value="industrial">Industrial</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Tell us about your energy needs..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-hero w-100">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex flex-column justify-content-stretch">
+                    <div class="contact-map fade-in h-100 d-flex align-items-center justify-content-center">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d51001.431969219215!2d28.969383898786624!3d41.05404145578279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1748512102134!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info-cards-row fade-in d-flex flex-row flex-wrap justify-content-between gap-3">
+                <div class="contact-card d-flex align-items-center flex-row flex-grow-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h5>Address</h5>
+                                    <p>123 Solar Street, Green City, GC 12345</p>
+                                </div>
+                            </div>
+                <div class="contact-card d-flex align-items-center flex-row flex-grow-1">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h5>Phone</h5>
+                                    <p>+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                <div class="contact-card d-flex align-items-center flex-row flex-grow-1">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h5>Email</h5>
+                                    <p>info@solartech.com</p>
+                                </div>
+                            </div>
+                <div class="contact-card d-flex align-items-center flex-row flex-grow-1">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h5>Business Hours</h5>
+                                    <p>Mon-Fri: 8AM-6PM<br>Sat: 9AM-4PM</p>
+                                </div>
+                            </div>
+                        </div>
+            <div class="social-links mt-4 fade-in">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/15551234567" class="social-link"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced WhatsApp Button -->
+    <a href="https://wa.me/15551234567" class="whatsapp-btn" target="_blank" title="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-btn-text">WhatsApp Fiyat Al</span>
+    </a>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-solar-panel me-2"></i>SolarTech</h4>
+                    <p>Leading the renewable energy revolution with innovative solar solutions for homes, businesses, and industrial facilities.</p>
+                    <p><strong>Powering a sustainable future, one installation at a time.</strong></p>
+                    <div class="mt-3">
+                        <small><i class="fas fa-award me-1"></i> Certified & Licensed</small><br>
+                        <small><i class="fas fa-shield-alt me-1"></i> Fully Insured</small><br>
+                        <small><i class="fas fa-leaf me-1"></i> Eco-Friendly Solutions</small>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#packages">Residential Solar Systems</a></li>
+                        <li><a href="#packages">Commercial Solar Solutions</a></li>
+                        <li><a href="#packages">Industrial Solar Projects</a></li>
+                        <li><a href="#contact">Free Energy Consultation</a></li>
+                        <li><a href="#contact">Maintenance & Support</a></li>
+                        <li><a href="#contact">System Monitoring</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About SolarTech</a></li>
+                        <li><a href="#blog">Solar Energy Blog</a></li>
+                        <li><a href="#reviews">Customer Reviews</a></li>
+                        <li><a href="#process">Installation Process</a></li>
+                        <li><a href="#contact">Contact & Support</a></li>
+                        <li><a href="#advantages">Why Choose Solar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter Subscription</h4>
+                    <p>Stay updated with the latest solar energy news, exclusive offers, and industry insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="mt-3">
+                        <small><i class="fas fa-envelope me-1"></i> Weekly updates</small><br>
+                        <small><i class="fas fa-gift me-1"></i> Exclusive offers</small><br>
+                        <small><i class="fas fa-newspaper me-1"></i> Industry news</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2024 SolarTech. All rights reserved. | Powering a sustainable future with clean energy solutions.</p>
+                <p><small>Licensed Solar Contractor | NABCEP Certified | BBB A+ Rating</small></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Hero Slider
+        let currentSlideIndex = 0
+        const slides = document.querySelectorAll(".hero-slide")
+        const dots = document.querySelectorAll(".slider-dot")
+
+        function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index)
+        })
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index)
+        })
+        }
+
+        function nextSlide() {
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length
+        showSlide(currentSlideIndex)
+        }
+
+        function prevSlide() {
+        currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length
+        showSlide(currentSlideIndex)
+        }
+
+        function currentSlide(index) {
+        currentSlideIndex = index - 1
+        showSlide(currentSlideIndex)
+        }
+
+        // Auto-advance slider
+        setInterval(nextSlide, 6000)
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault()
+            const target = document.querySelector(this.getAttribute("href"))
+            if (target) {
+            // FIXED: Account for fixed navbar height
+            const navbarHeight = document.querySelector(".navbar").offsetHeight
+            const targetPosition = target.offsetTop - navbarHeight - 20
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+            })
+            }
+        })
+        })
+
+        // Fade in animation on scroll
+        const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+            entry.target.classList.add("visible")
+            }
+        })
+        }, observerOptions)
+
+        // Observe all fade-in elements
+        document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el)
+        })
+
+        // FIXED: Enhanced navbar background change on scroll
+        window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar")
+        if (window.scrollY > 50) {
+            navbar.style.background = "rgba(255, 255, 255, 0.98)"
+            navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.15)"
+        } else {
+            navbar.style.background = "rgba(255, 255, 255, 0.97)"
+            navbar.style.boxShadow = "0 2px 20px rgba(18, 149, 217, 0.07)"
+        }
+        })
+
+        // FIXED: Close mobile menu when clicking on links
+        const bootstrap = window.bootstrap // Declare the bootstrap variable
+        document.querySelectorAll(".navbar-nav .nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            const navbarCollapse = document.querySelector(".navbar-collapse")
+            if (navbarCollapse.classList.contains("show")) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse)
+            bsCollapse.hide()
+            }
+        })
+        })
+
+        // Form submission
+        const contactForm = document.getElementById("contactForm")
+        if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault()
+
+            // Show success message
+            const button = this.querySelector('button[type="submit"]')
+            const originalText = button.innerHTML
+            button.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!'
+            button.style.background = "var(--secondary-color)"
+            button.style.color = "var(--text-dark)"
+
+            // Reset after 3 seconds
+            setTimeout(() => {
+            button.innerHTML = originalText
+            button.style.background = "linear-gradient(90deg, #1295d9 60%, #27f7c6 100%)"
+            button.style.color = "#fff"
+            this.reset()
+            }, 3000)
+        })
+        }
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector(".newsletter-form")
+        if (newsletterForm) {
+        newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault()
+            const button = this.querySelector("button")
+            const originalText = button.textContent
+            button.textContent = "Subscribed!"
+            button.style.background = "#1ee6b8"
+
+            setTimeout(() => {
+            button.textContent = originalText
+            button.style.background = "var(--secondary-color)"
+            this.reset()
+            }, 2000)
+        })
+        }
+
+        // Enhanced button hover effects
+        document.querySelectorAll(".btn-hero, .package-cta, .process-details-btn, .blog-all-btn").forEach((btn) => {
+        btn.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-3px) scale(1.05)"
+        })
+
+        btn.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)"
+        })
+        })
+
+        // FIXED: Improved parallax effect for hero section (disabled on mobile for performance)
+        if (window.innerWidth > 768) {
+        window.addEventListener("scroll", () => {
+            const scrolled = window.pageYOffset
+            const heroSlides = document.querySelectorAll(".hero-slide")
+            heroSlides.forEach((slide) => {
+            const speed = scrolled * 0.1 // Reduced speed for better performance
+            slide.style.transform = `translateY(${speed}px)`
+            })
+        })
+        }
+
+        // Add loading animation
+        window.addEventListener("load", () => {
+        document.body.style.opacity = "0"
+        document.body.style.transition = "opacity 0.5s ease-in-out"
+        setTimeout(() => {
+            document.body.style.opacity = "1"
+        }, 100)
+        })
+
+        // Process details button
+        const processDetailsBtn = document.querySelector(".process-details-btn")
+        if (processDetailsBtn) {
+        processDetailsBtn.addEventListener("click", () => {
+            alert(
+            "Detailed process information would be displayed here. This could open a modal or navigate to a detailed page.",
+            )
+        })
+        }
+
+        // Package CTA buttons
+        document.querySelectorAll(".package-cta").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            document.getElementById("contact").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            })
+        })
+        })
+
+        // FIXED: Prevent body scroll when mobile menu is open
+        const navbarToggler = document.querySelector(".navbar-toggler")
+        const navbarCollapse = document.querySelector(".navbar-collapse")
+
+        if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener("click", () => {
+            setTimeout(() => {
+            if (navbarCollapse.classList.contains("show")) {
+                document.body.style.overflow = "hidden"
+            } else {
+                document.body.style.overflow = "auto"
+            }
+            }, 100)
+        })
+        }
+
+        // FIXED: Ensure WhatsApp button is always visible
+        function ensureWhatsAppVisibility() {
+        const whatsappBtn = document.querySelector(".whatsapp-btn")
+        if (whatsappBtn) {
+            whatsappBtn.style.display = "flex"
+            whatsappBtn.style.zIndex = "9998"
+        }
+        }
+
+        // Call on load and resize
+        window.addEventListener("load", ensureWhatsAppVisibility)
+        window.addEventListener("resize", ensureWhatsAppVisibility)
+
+        // FIXED: Handle touch events for better mobile interaction
+        if ("ontouchstart" in window) {
+        document.querySelectorAll(".advantage-card, .process-step, .blog-card").forEach((card) => {
+            card.addEventListener("touchstart", function () {
+            this.style.transform = "translateY(-10px) scale(1.02)"
+            })
+
+            card.addEventListener("touchend", function () {
+            setTimeout(() => {
+                this.style.transform = "translateY(0) scale(1)"
+            }, 150)
+            })
+        })
+        }
+
+        // Process Gallery Modal
+        const processModal = document.getElementById("processModal");
+        const processModalImg = document.getElementById("processModalImg");
+        const processModalClose = document.getElementById("processModalClose");
+
+        document.querySelectorAll(".process-gallery-thumb").forEach((thumb) => {
+        thumb.addEventListener("click", function () {
+            processModalImg.src = this.src;
+            processModalImg.alt = this.alt;
+            processModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+        });
+
+        processModalClose.addEventListener("click", function () {
+        processModal.classList.remove("active");
+        processModalImg.src = "";
+        document.body.style.overflow = "auto";
+        });
+
+        processModal.addEventListener("click", function (e) {
+        if (e.target === processModal) {
+            processModal.classList.remove("active");
+            processModalImg.src = "";
+            document.body.style.overflow = "auto";
+        }
+        });
+    </script>
+</body>
+</html>
