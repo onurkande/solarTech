@@ -1,61 +1,71 @@
+<!-- Enhanced Footer -->
 <footer class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4 mb-lg-0">
-                <a href="{{route('index')}}"><img src="{{asset('storage/'.$siteSettings->logo)}}" alt="SineklikCi Logo" class="footer-logo mb-4"></a>
-                <p>{{$siteSettings->desc}}</p>
-                <div class="social-links">
-                    @if($siteSettings->facebook_url)
-                        <a href="{{$siteSettings->facebook_url}}"><i class="fab fa-facebook-f"></i></a>
-                    @endif
-                    @if($siteSettings->twitter_url)
-                        <a href="{{$siteSettings->twitter_url}}"><i class="fab fa-twitter"></i></a>
-                    @endif
-                    @if($siteSettings->instagram_url)
-                        <a href="{{$siteSettings->instagram_url}}"><i class="fab fa-instagram"></i></a>
-                    @endif
-                    @if($siteSettings->youtube_url)
-                        <a href="{{$siteSettings->youtube_url}}"><i class="fab fa-youtube"></i></a>
-                    @endif
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="{{ asset('storage/' . $settings->logo) }}" alt="Logo" class="footer-logo" style="max-width: 100px; max-height: 100px;">
+               {!! $settings->content !!}
+                <div class="mt-3">
+                    <small><i class="fas fa-award me-1"></i>  Sertifikalı ve Lisanslı</small><br>
+                    <small><i class="fas fa-shield-alt me-1"></i> Tamamen Sigortalı</small><br>
+                    <small><i class="fas fa-leaf me-1"></i> Çevresel Uyumlu Çözümler</small>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
-                <h4>Hızlı Linkler</h4>
-                <ul class="footer-links">
-                    <li><a href="{{route('index')}}">Ana Sayfa</a></li>
-                    <li><a href="{{route('about')}}">Hakkımızda</a></li>
-                    <li><a href="{{route('products')}}">Ürünlerimiz</a></li>
-                    <li><a href="{{route('videos')}}">Videolar</a></li>
-                    <li><a href="{{route('contact')}}">İletişim</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
-                <h4>Ürünlerimiz</h4>
-                <ul class="footer-links">
-                    @foreach($products as $product)
-                        <li><a href="{{route('product-detail', $product->slug)}}">{{$product->title}}</a></li>
+            
+            <div class="footer-section">
+                <h4>Hizmetlerimiz</h4>
+                <ul>
+                    @foreach ($blogs->take(4) as $blog)
+                        <li><a href="{{ route('blog-details', $blog->slug) }}">{{ $blog->title }}</a></li>
                     @endforeach
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-4">
-                <h4>İletişim</h4>
-                <ul class="footer-contact">
-                    <li><i class="fas fa-map-marker-alt"></i> {{$contact->address}}</li>
-                    <li><i class="fas fa-phone-alt"></i> <a href="tel:{{$contact->telephone}}">{{$contact->telephone}}</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:{{$contact->email}}">{{$contact->email}}</a></li>
-                    <li><i class="fas fa-clock"></i> {{$contact->working_hours}}</li>
+            
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <ul>
+                    <li><a href="{{route('about')}}">Hakkımızda</a></li>
+                    <li><a href="{{route('blogs')}}">Ürünlerimiz</a></li>
+                    <li><a href="{{route('contact')}}">İletişim</a></li>
+                    <li><a href="{{route('contact')}}#contact-form">Teklif Al</a></li>
                 </ul>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>{{$siteSettings->bottom_desc}}</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p>{{$siteSettings->bottom_content}}</p>
+            
+            <div class="footer-section">
+                <h4>Bültenimize Kayıt Olun</h4>
+                <p>Güneş enerjisi hakkında en son güncellemeleri alın</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email adresinizi giriniz" required>
+                    <button type="submit">Gönder</button>
+                </form>
+                <div class="mt-3">
+                    <small><i class="fas fa-envelope me-1"></i> Haftalık Güncellemeler</small><br>
+                    <small><i class="fas fa-gift me-1"></i> Özel Teklifler</small><br>
+                    <small><i class="fas fa-newspaper me-1"></i> Sanayi Haberleri</small>
                 </div>
             </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-social">
+                @if ($contact->facebook_url)
+                    <a href="{{$contact->facebook_url}}" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                @endif
+                @if ($contact->twitter_url)
+                    <a href="{{$contact->twitter_url}}" title="Twitter"><i class="fab fa-twitter"></i></a>
+                @endif
+                @if ($contact->linkedin_url)
+                    <a href="{{$contact->linkedin_url}}" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                @endif
+                @if ($contact->instagram_url)
+                    <a href="{{$contact->instagram_url}}" title="Instagram"><i class="fab fa-instagram"></i></a>
+                @endif
+                @if ($contact->youtube_url)
+                    <a href="{{$contact->youtube_url}}" title="YouTube"><i class="fab fa-youtube"></i></a>
+                @endif
+            </div>
+            <p>{{$settings->bottom_text1}}</p>
+            <p><small>{{$settings->bottom_text2}}</small></p>
         </div>
     </div>
 </footer>

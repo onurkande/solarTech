@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\SiteSetting;
-use App\Models\Product;
 use App\Models\Contact;
+use App\Models\Blog;
 use Illuminate\Support\Facades\View;
 
 class SiteSettingsServiceProvider extends ServiceProvider
@@ -18,13 +18,14 @@ class SiteSettingsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Tüm view'lara site ayarlarını gönder
-        /*View::composer(['site.layouts.partials.header', 'site.layouts.partials.footer', 'site.index','site.layouts.master'], function ($view) {
-            $siteSettings = SiteSetting::first();
-            $products = Product::latest()->take(5)->get();
+        View::composer(['site.layouts.partials.footer','site.layouts.master', 'site.layouts.partials.header'], function ($view) {
+            //$siteSettings = SiteSetting::first();
             $contact = Contact::first();
-            $view->with('siteSettings', $siteSettings);
-            $view->with('products', $products);
+            $settings = SiteSetting::first();
+            $blogs = Blog::select('slug', 'title')->get();
+            $view->with('blogs', $blogs);
             $view->with('contact', $contact);
-        });*/
+            $view->with('settings', $settings);
+        });
     }
 } 

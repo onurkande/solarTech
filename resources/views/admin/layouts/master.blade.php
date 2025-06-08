@@ -42,6 +42,10 @@
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/demo.css') }}" />
+
+    <!-- CKEditor -->
+    <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/ckeditor.css') }}">
+		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.2.0/ckeditor5.css" crossorigin>
   </head>
   <body>
     <div class="wrapper">
@@ -298,6 +302,14 @@
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="{{ asset('admin-assets/assets/js/setting-demo.js') }}"></script>
     <script src="{{ asset('admin-assets/assets/js/demo.js') }}"></script>
+
+
+    <!-- CKEditor -->
+		<script src="https://cdn.ckeditor.com/ckeditor5/45.2.0/ckeditor5.umd.js" crossorigin></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/45.2.0/translations/tr.umd.js" crossorigin></script>
+		<script src="{{ asset('admin-assets/assets/js/ckeditor.js') }}"></script>
+
+
     <script>
 
       $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {

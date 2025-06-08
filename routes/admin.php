@@ -3,16 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\AboutController;
-use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\AboutStoryController;
+use App\Http\Controllers\Admin\AboutReferenceController;
+use App\Http\Controllers\Admin\AboutImageController;
 use App\Http\Controllers\Admin\VideoController;
-use App\Http\Controllers\Admin\CommentController;
-use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\SiteSettingController;
+use App\Http\Controllers\Admin\AdminEmailController;
+use App\Http\Controllers\Admin\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,95 +45,78 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         return view('admin.index');
     })->name('dashboard');
 
-    // Product Routes
-    Route::resource('products', ProductController::class);
-    Route::post('product-settings', [ProductController::class, 'updateSettings'])->name('product-settings.update');
-
-    // Site Settings Routes
-    Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');
-    Route::put('site-settings', [SiteSettingController::class, 'update'])->name('site-settings.update');
+    // Feature Routes
+    Route::resource('features', FeatureController::class);
+    Route::post('feature-settings', [FeatureController::class, 'updateSettings'])->name('feature-settings.update');
 
     // About Routes
-    Route::get('abouts', [AboutController::class, 'index'])->name('abouts.index');
-    Route::put('abouts', [AboutController::class, 'update'])->name('abouts.update');
-    Route::put('about-settings', [AboutController::class, 'updateSettings'])->name('about-settings.update');
+    Route::get('about', [AboutController::class, 'index'])->name('about.index');
+    Route::get('about/edit', [AboutController::class, 'edit'])->name('about.edit');
+    Route::put('about', [AboutController::class, 'update'])->name('about.update');
 
-    // Counter Routes
-    Route::prefix('counters')->name('counters.')->group(function () {
-        Route::get('/', [CounterController::class, 'index'])->name('index');
-        Route::post('/', [CounterController::class, 'store'])->name('store');
-        Route::put('/', [CounterController::class, 'update'])->name('update');
-        Route::get('/delete/{counter}', [CounterController::class, 'destroy'])->name('destroy');
-    });
+    // About Stories Routes
+    Route::resource('about/stories', AboutStoryController::class)->names([
+        'index' => 'about.stories.index',
+        'create' => 'about.stories.create',
+        'store' => 'about.stories.store',
+        'edit' => 'about.stories.edit',
+        'update' => 'about.stories.update',
+        'destroy' => 'about.stories.destroy',
+    ]);
 
-    // Counter Settings Routes
-    Route::prefix('counter-settings')->name('counter-settings.')->group(function () {
-        Route::put('/', [CounterController::class, 'updateSettings'])->name('update');
-    });
+    // About References Routes
+    Route::resource('about/references', AboutReferenceController::class)->names([
+        'index' => 'about.references.index',
+        'create' => 'about.references.create',
+        'store' => 'about.references.store',
+        'edit' => 'about.references.edit',
+        'update' => 'about.references.update',
+        'destroy' => 'about.references.destroy',
+    ]);
 
-    // Feature Routes
-    Route::prefix('features')->name('features.')->group(function () {
-        Route::get('/', [FeatureController::class, 'index'])->name('index');
-        Route::post('/', [FeatureController::class, 'store'])->name('store');
-        Route::put('/', [FeatureController::class, 'update'])->name('update');
-        Route::get('/delete/{feature}', [FeatureController::class, 'destroy'])->name('destroy');
-    });
-
-    // Feature Settings Routes
-    Route::prefix('feature-settings')->name('feature-settings.')->group(function () {
-        Route::put('/', [FeatureController::class, 'updateSettings'])->name('update');
-    });
+    // About Images Routes
+    Route::resource('about/images', AboutImageController::class)->names([
+        'index' => 'about.images.index',
+        'create' => 'about.images.create',
+        'store' => 'about.images.store',
+        'edit' => 'about.images.edit',
+        'update' => 'about.images.update',
+        'destroy' => 'about.images.destroy',
+    ]);
 
     // Video Routes
-    Route::prefix('videos')->name('videos.')->group(function () {
-        Route::get('/', [VideoController::class, 'index'])->name('index');
-        Route::post('/', [VideoController::class, 'store'])->name('store');
-        Route::put('/', [VideoController::class, 'update'])->name('update');
-        Route::get('/delete/{video}', [VideoController::class, 'destroy'])->name('destroy');
-    });
+    Route::get('video', [VideoController::class, 'index'])->name('video.index');
+    Route::get('video/edit', [VideoController::class, 'edit'])->name('video.edit');
+    Route::put('video', [VideoController::class, 'update'])->name('video.update');
 
-    // Video Settings Routes
-    Route::prefix('video-settings')->name('video-settings.')->group(function () {
-        Route::put('/', [VideoController::class, 'updateSettings'])->name('update');
-    });
-
-    // Comment Routes
-    Route::prefix('comments')->name('comments.')->group(function () {
-        Route::get('/', [CommentController::class, 'index'])->name('index');
-        Route::post('/', [CommentController::class, 'store'])->name('store');
-        Route::put('/', [CommentController::class, 'update'])->name('update');
-        Route::get('/delete/{comment}', [CommentController::class, 'destroy'])->name('destroy');
-    });
-
-    // Comment Settings Routes
-    Route::prefix('comment-settings')->name('comment-settings.')->group(function () {
-        Route::put('/', [CommentController::class, 'updateSettings'])->name('update');
-    });
-
-    // Question Routes
-    Route::prefix('questions')->name('questions.')->group(function () {
-        Route::get('/', [QuestionController::class, 'index'])->name('index');
-        Route::post('/', [QuestionController::class, 'store'])->name('store');
-        Route::put('/', [QuestionController::class, 'update'])->name('update');
-        Route::get('/delete/{question}', [QuestionController::class, 'destroy'])->name('destroy');
-    });
-
-    // Question Settings Routes
-    Route::prefix('question-settings')->name('question-settings.')->group(function () {
-        Route::put('/', [QuestionController::class, 'updateSettings'])->name('update');
-    });
+    // Blog Routes
+    Route::resource('blogs', BlogController::class);
+    Route::get('blogs/{blog}/delete-image/{image}', [BlogController::class, 'deleteImage'])->name('blogs.images.delete');
 
     // Contact Routes
-    Route::prefix('contacts')->name('contacts.')->group(function () {
-        Route::get('/', [ContactController::class, 'index'])->name('index');
-        Route::put('/', [ContactController::class, 'update'])->name('update');
-    });
+    Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::put('contact', [ContactController::class, 'update'])->name('contact.update');
 
-    // Contact Messages Routes
-    Route::prefix('contact-messages')->name('contact-messages.')->group(function () {
-        Route::get('/', [ContactMessageController::class, 'index'])->name('index');
-        Route::get('/mark-as-read/{message}', [ContactMessageController::class, 'markAsRead'])->name('mark-as-read');
-        Route::get('/delete/{message}', [ContactMessageController::class, 'destroy'])->name('destroy');
-    });
+    // Message Routes
+    Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');
+    Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::get('messages/{message}/mark-as-read', [MessageController::class, 'markAsRead'])->name('messages.mark-as-read');
+
+    // Site Settings Routes
+    Route::get('/settings', [SiteSettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [SiteSettingController::class, 'update'])->name('settings.update');
+    
+    Route::get('/emails', [AdminEmailController::class, 'index'])->name('emails.index');
+    Route::post('/emails', [AdminEmailController::class, 'store'])->name('emails.store');
+    Route::delete('/emails/{email}', [AdminEmailController::class, 'destroy'])->name('emails.destroy');
+    Route::put('/emails/{email}/toggle-status', [AdminEmailController::class, 'toggleStatus'])->name('emails.toggle-status');
+
+    // Slider Routes
+    Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
+    Route::put('/sliders/settings', [SliderController::class, 'updateSettings'])->name('sliders.update-settings');
+    Route::post('/sliders/images', [SliderController::class, 'storeImage'])->name('sliders.store-image');
+    Route::post('/sliders/images/order', [SliderController::class, 'updateImageOrder'])->name('sliders.update-image-order');
+    Route::delete('/sliders/images/{image}', [SliderController::class, 'destroyImage'])->name('sliders.destroy-image');
 });
 
