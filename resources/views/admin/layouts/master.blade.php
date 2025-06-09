@@ -44,8 +44,8 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/demo.css') }}" />
 
     <!-- CKEditor -->
-    <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/ckeditor.css') }}">
-		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.2.0/ckeditor5.css" crossorigin>
+    <!--<link rel="stylesheet" href="{{ asset('admin-assets/assets/css/ckeditor.css') }}">
+		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.2.0/ckeditor5.css" crossorigin>-->
   </head>
   <body>
     <div class="wrapper">
@@ -305,9 +305,9 @@
 
 
     <!-- CKEditor -->
-		<script src="https://cdn.ckeditor.com/ckeditor5/45.2.0/ckeditor5.umd.js" crossorigin></script>
+		<!--<script src="https://cdn.ckeditor.com/ckeditor5/45.2.0/ckeditor5.umd.js" crossorigin></script>
 		<script src="https://cdn.ckeditor.com/ckeditor5/45.2.0/translations/tr.umd.js" crossorigin></script>
-		<script src="{{ asset('admin-assets/assets/js/ckeditor.js') }}"></script>
+		<script src="{{ asset('admin-assets/assets/js/ckeditor.js') }}"></script>-->
 
 
     <script>

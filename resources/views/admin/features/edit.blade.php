@@ -49,16 +49,14 @@
 </div>
 @endsection 
 @section('scripts')
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 <script>
-    const editorIDs = ['editor-content'];
-
-    editorIDs.forEach(id => {
-        const element = document.querySelector(`#${id}`);
-        if (element) {
-            ClassicEditor.create(element, editorConfig).catch(error => {
-                console.error(`CKEditor initialization failed for #${id}`, error);
-            });
-        }
+    CKEDITOR.config.versionCheck = false;
+    CKEDITOR.replace('editor-content');
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+        var fileName = e.target.files[0].name;
+        var nextSibling = e.target.nextElementSibling;
+        nextSibling.innerText = fileName;
     });
 </script>
-@endsection 
+@endsection

@@ -21,10 +21,10 @@
 
     @yield('content')
 
-    <!-- Enhanced WhatsApp Button -->
-    <a href="https://wa.me/{{$contact->phone}}" class="whatsapp-btn" target="_blank" title="Contact us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-btn-text">WhatsApp Fiyat Al</span>
+    <!-- Enhanced Phone Button -->
+    <a href="tel:{{$contact->phone}}" class="whatsapp-btn" title="Bizi Arayın">
+        <i class="fas fa-phone"></i>
+        <span class="whatsapp-btn-text">Hemen Ara</span>
     </a>
 
     @include('site.layouts.partials.footer')

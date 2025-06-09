@@ -62,6 +62,12 @@
               </form>
             </ul>
           </li>
+          <li class="nav-item">
+              <a href="{{ url('/') }}" class="nav-link" target="_blank">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>Siteyi Görüntüle</span>
+              </a>
+          </li>
           <li class="nav-item topbar-user dropdown hidden-caret">
             <a
               class="dropdown-toggle profile-pic"

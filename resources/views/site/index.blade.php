@@ -90,10 +90,10 @@
                     <div class="about-gallery w-100">
                         <img src="{{ asset('storage/' . $aboutImages[0]->image) }}" 
                              alt="Our professional team" class="img-fluid main-image">
+                        <img src="{{ asset('site-assets/index-video.gif') }}" 
+                            alt="Monitoring system" class="img-fluid">
                         <img src="{{ asset('storage/' . $aboutImages[1]->image) }}" 
                              alt="Happy customers" class="img-fluid">
-                        <img src="{{ asset('storage/' . $aboutImages[2]->image) }}" 
-                             alt="Monitoring system" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -175,6 +175,10 @@
             <div class="section-title fade-in">
                 <h2>Ücretsiz Güneş Enerjisi Danışmanlığınızı Alın</h2>
                 <p>Tasarruf etmeye hazır mısınız? Kişiselleştirilmiş bir güneş enerjisi çözümü için bugün bize ulaşın</p>
+                <a href="tel:{{ $contact->phone }}" class="btn btn-primary btn-lg mt-4 contact-btn fade-in">
+                    <i class="fas fa-phone-alt me-2"></i>
+                    Hemen Tıkla ve Ara
+                </a>
             </div>
             <div class="row align-items-stretch mb-4">
                 <div class="col-lg-6 d-flex flex-column justify-content-stretch">
@@ -242,7 +246,7 @@
                 </div>
                 <div class="col-lg-6 d-flex flex-column justify-content-stretch">
                     <div class="contact-map fade-in h-100 d-flex align-items-center justify-content-center">
-                        {!! str_replace('<iframe', '<iframe width="600" height="450"', $contact->map_embed) !!}
+                        {!! str_replace('<iframe', '<iframe width="600" height="600"', $contact->map_embed) !!}
                     </div>
                 </div>
             </div>
